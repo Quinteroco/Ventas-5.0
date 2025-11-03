@@ -87,6 +87,16 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
 }
 .cta-btn:hover { background: var(--color-secondary); }
 
+.gradient-hover {
+  transition: background 0.5s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.gradient-hover:hover {
+  background: linear-gradient(90deg, #ff7a00, #ffb347);
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(255, 122, 0, 0.4);
+}
+
 /* MAIN / HERO */
 .main { padding-top: 140px; }
 .hero { position:relative; min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden; color:#fff; padding:60px 20px; }
@@ -97,25 +107,66 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
 #hero-title { font-size:2.6rem; margin:12px 0; line-height:1.02; }
 #hero-subtitle { font-size:1.1rem; color:rgba(255,255,255,0.9); margin-bottom:18px; }
 
-/* Countdown */
-.countdown { display:flex; gap:14px; justify-content:center; margin:18px 0 22px; }
-.countdown-box { background: rgba(255,255,255,0.08); padding:12px 18px; border-radius:10px; min-width:82px; color:#fff; text-align:center; }
-.countdown-box div { font-size:1.6rem; font-weight:700; }
-.countdown-box small { display:block; font-size:12px; opacity:0.9; margin-top:6px; }
+.countdown-container {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.countdown-message {
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.countdown-message strong {
+  color: #d86b00;
+}
+
+/* 👇 Animación */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 1.6s ease-in-out infinite;
+}
 
 /* Hero CTA */
 .hero-cta {
-  display:inline-block;
-  background: var(--color-primary);
-  color:#fff;
-  padding:14px 26px;
-  border-radius:999px;
-  font-weight:800;
-  text-decoration:none;
-  margin-top:8px;
-  box-shadow: 0 8px 30px rgba(10,102,194,0.3);
+  display: inline-block;
+  text-align: center;
+  background: linear-gradient(90deg, #004aad, #007bff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 16px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.5s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 74, 173, 0.3);
 }
-.hero-cta:hover { background: var(--color-secondary); }
+
+.hero-cta:hover {
+  background: linear-gradient(90deg, #ff7a00, #ffb347);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 122, 0, 0.4);
+}
+
+.cta-note {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
 
 /* Hero features */
 .hero-features { display:flex; gap:18px; justify-content:center; margin-top:16px; color:rgba(255,255,255,0.95); font-size:14px; }
@@ -216,29 +267,27 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
 }
 
 .btn.reserve-btn {
-  padding: 96px;
   display: inline-block;
-  background-color: #fff;
-  color: var(--color-primary);
+  background-color: #fff; /* Blanco normal */
+  color: var(--color-primary); /* Azul del sitio */
   padding: 16px 24px;
   border-radius: 12px;
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
   max-width: 320px;
-  white-space: normal;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
   line-height: 1.3;
   cursor: pointer;
+  animation: pulse 1.6s ease-in-out infinite;
 }
 
-
 .btn.reserve-btn:hover {
-  background-color: var(--color-primary);
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(10,102,194,0.6);
+  background-color: #ff7b00 !important; /* fuerza el naranja */
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(255, 123, 0, 0.5);
   transform: translateY(-4px);
 }
 
@@ -255,6 +304,17 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Efecto visual similar al del contador */
+.btn.reserve-btn {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* Final CTA */
@@ -287,7 +347,7 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
 }
 
 .btn.big-cta {
-  background: var(--color-primary);
+  background: var(--color-primary); /* Azul por defecto */
   padding: 14px 28px;
   border-radius: 10px;
   font-weight: 800;
@@ -296,7 +356,24 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
   cursor: pointer;
   display: inline-block;
   text-align: center;
-  text-decoration: none; /* Esto evita el subrayado en <a> */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+/* Hover: naranja sólido */
+.btn.big-cta:hover {
+  background-color: #ff7b00 !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(255, 123, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+/* Pulso */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 
