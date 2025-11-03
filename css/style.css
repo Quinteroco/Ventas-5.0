@@ -29,6 +29,13 @@ html, body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe 
 .top-banner-link { color: #fff; text-decoration: underline; margin-left: 8px; }
 
 /* Header */
+
+#company-name img {
+  height: 40px; /* ajustá según tu header */
+  width: auto;
+  display: block;
+}
+
 .site-header {
   position: fixed;
   top: 40px;
